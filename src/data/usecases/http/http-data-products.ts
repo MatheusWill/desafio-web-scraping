@@ -74,6 +74,21 @@ export class HttpDataProducts implements DataProducts {
 
     await browser.close();
 
+    // --------------------------------- MONTANDO FILTRO ----------------------------------
+    const filter = "Lenovo";
+
+    const data = infos.products.map((data) => {
+      // const filterProducts = data.description;
+      let result;
+
+      if (data.description?.match(filter)) {
+        result = data;
+      }
+
+      return result;
+    });
+    console.log(data);
+
     return infos;
   }
 }
