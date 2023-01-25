@@ -1,18 +1,13 @@
 import { DataProducts } from "@/domain/usecases";
 import puppeteer from "puppeteer";
-import { logger } from "@/util";
 
 export class HttpDataProducts implements DataProducts {
   async getDataProducts(params: any): DataProducts.Result {
-    const { url } = params;
+    const { url, filter } = params;
 
     // const browser = await puppeteer.launch({
     //   executablePath: "/usr/bin/google-chrome",
     //   args: ["--no-sandbox"],
-    // });
-
-    // const browser = await puppeteer.launch({
-    //   headless: false,
     // });
 
     const browser = await puppeteer.launch();
@@ -74,11 +69,7 @@ export class HttpDataProducts implements DataProducts {
 
     await browser.close();
 
-    // --------------------------------- MONTANDO FILTRO ----------------------------------
-    const filter = "Lenovo";
-
     const data = infos.products.map((data) => {
-      // const filterProducts = data.description;
       let result;
 
       if (data.description?.match(filter)) {
@@ -87,8 +78,11 @@ export class HttpDataProducts implements DataProducts {
 
       return result;
     });
-    console.log(data);
 
-    return infos;
+    const removeNull = data.filter((element) => {
+      return element !== undefined;
+    });
+
+    return removeNull;
   }
 }
