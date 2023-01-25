@@ -7,7 +7,7 @@ export class CreateAccountController implements Controller {
     httpRequest: Controller.HttpRequest,
     [{ account, accessToken }]: Controller.State
   ): Controller.Result {
-    return ok(DICTIONARY.RESPONSE.MESSAGE.LOCALS.PRODUTOS, {
+    return ok(DICTIONARY.RESPONSE.MESSAGE.OK, {
       account,
       accessToken,
     });
