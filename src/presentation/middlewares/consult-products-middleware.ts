@@ -29,7 +29,7 @@ export class ConsultProductsMiddleware implements Middleware {
         filter,
       });
 
-      if (!dataProducts || dataProducts.length === 0)
+      if (!dataProducts || dataProducts.name === "")
         throw new Error("PRODUCTS_NOT_FOUND");
 
       setState({ data: dataProducts });

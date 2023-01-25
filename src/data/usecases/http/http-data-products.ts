@@ -79,10 +79,10 @@ export class HttpDataProducts implements DataProducts {
       return result;
     });
 
-    const removeNull = data.filter((element) => {
+    const removeNullData = data.filter((element) => {
       return element !== undefined;
     });
 
-    return removeNull;
+    return removeNullData;
   }
 }
