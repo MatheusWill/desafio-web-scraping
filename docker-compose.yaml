@@ -1,0 +1,12 @@
+version: '3.9'
+services:
+  app:
+    container_name: desafio-web-scraper
+    build: .
+    env_file: .env
+    restart: always
+    ports:
+      - ${PORT}:${PORT}
+      - ${PORT_DEBUG}:${PORT_DEBUG}
+    security_opt:
+      - seccomp=chrome.json
