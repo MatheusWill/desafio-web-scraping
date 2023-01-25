@@ -20,15 +20,17 @@ export class ConsultProductsMiddleware implements Middleware {
     try {
       const { url } = httpRequest.body;
 
-      const products = await this.consultProduct.consult(url);
+      const resultConsultProduct = await this.consultProduct.consult(url);
 
-      if (!products) throw new Error("PRODUCTS_NOT_VALID");
+      if (!resultConsultProduct) throw new Error("PRODUCTS_NOT_VALID");
 
-      const data = await this.dataProducts.getDataProducts(products);
+      const dataProducts = await this.dataProducts.getDataProducts(
+        resultConsultProduct
+      );
 
-      if (!data) throw new Error("PRODUCTS_NOT_FOUND");
+      if (!dataProducts) throw new Error("PRODUCTS_NOT_FOUND");
 
-      setState(data);
+      setState({ data: dataProducts });
 
       return next();
     } catch (error) {
