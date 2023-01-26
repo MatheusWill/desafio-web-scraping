@@ -2,7 +2,7 @@ import { DbCreateAccount } from "@/data/usecases/db";
 import { DbAuthentication } from "@/data/usecases/authentication";
 import { AccountRepository } from "@/infra/db";
 import { CreateAccountMiddleware } from "@/presentation/middlewares";
-import { BcryptAdapter } from "infra/criptography/bcrypt-adapter";
+import { BcryptAdapter } from "@/infra/criptography/bcrypt-adapter";
 import { JwtAdapter } from "@/infra/criptography/jwt-adapter";
 
 export const makeCreateAccountMiddleware = () => {

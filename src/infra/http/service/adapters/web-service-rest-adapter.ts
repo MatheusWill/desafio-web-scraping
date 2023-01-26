@@ -4,6 +4,7 @@ import {
   HttpResponse,
 } from "@/data/protocols/http/adapters";
 import { decorator } from "@/util";
+import { apmSpan } from "@/util/apm/span-decorator";
 import { AxiosInstance } from "axios";
 
 const decorators = {
@@ -27,6 +28,11 @@ export class RequestAdapter implements HttpClient {
     options: decorators.options,
     input: decorators.params,
     output: decorators.result,
+  })
+  @apmSpan({
+    options: decorators.options,
+    params: decorators.params,
+    result: decorators.result,
   })
   async request(data: HttpRequest): Promise<HttpResponse> {
     this.axios.interceptors.response.use(undefined, (error) => error.response);

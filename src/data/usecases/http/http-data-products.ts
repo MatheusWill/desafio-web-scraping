@@ -5,12 +5,12 @@ export class HttpDataProducts implements DataProducts {
   async getDataProducts(params: any): DataProducts.Result {
     const { url, filter } = params;
 
-    // const browser = await puppeteer.launch({
-    //   executablePath: "/usr/bin/google-chrome",
-    //   args: ["--no-sandbox"],
-    // });
+    const browser = await puppeteer.launch({
+      executablePath: "/usr/bin/google-chrome",
+      args: ["--no-sandbox"],
+    });
 
-    const browser = await puppeteer.launch();
+    // const browser = await puppeteer.launch();
 
     const page = await browser.newPage();
     await page.goto(url);

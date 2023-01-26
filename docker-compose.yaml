@@ -6,7 +6,6 @@ services:
     env_file: .env
     restart: always
     ports:
-      - ${PORT}:${PORT}
-      - ${PORT_DEBUG}:${PORT_DEBUG}
+      - 3030:3030
     security_opt:
       - seccomp=chrome.json

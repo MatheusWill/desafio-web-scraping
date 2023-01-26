@@ -5,7 +5,7 @@ import {
   httpConsultProducts as httpConsultProductsService,
 } from "@/infra/http/service";
 import { ConsultProductsMiddleware } from "@/presentation/middlewares";
-import { BcryptAdapter } from "infra/criptography/bcrypt-adapter";
+import { BcryptAdapter } from "@/infra/criptography/bcrypt-adapter";
 import { JwtAdapter } from "@/infra/criptography/jwt-adapter";
 import { AccountRepository } from "@/infra/db";
 import { DbAuthentication } from "@/data/usecases/authentication";
