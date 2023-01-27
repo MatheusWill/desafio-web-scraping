@@ -25,7 +25,7 @@ export class ConsultProductsMiddleware implements Middleware {
     next: Function
   ): Middleware.Result {
     try {
-      const { url, filter } = httpRequest.body;
+      const filter = httpRequest.query.filter as string;
       const email = httpRequest.headers.email as string;
       const password = httpRequest.headers.password as string;
 
@@ -36,16 +36,15 @@ export class ConsultProductsMiddleware implements Middleware {
 
       if (!authentication) throw new Error("AUTHENTICATION_INVALID");
 
-      const resultConsultProduct = await this.consultProduct.consult(url);
+      const resultConsultProduct = await this.consultProduct.consult();
 
       if (!resultConsultProduct) throw new Error("PRODUCTS_NOT_VALID");
 
       const dataProducts = await this.dataProducts.getDataProducts({
-        url,
         filter,
       });
 
-      if (!dataProducts || dataProducts.name === "")
+      if (!dataProducts || dataProducts.length === 0)
         throw new Error("PRODUCTS_NOT_FOUND");
 
       setState({ data: dataProducts });

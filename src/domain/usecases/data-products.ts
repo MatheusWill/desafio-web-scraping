@@ -2,7 +2,6 @@ import { ProductModel } from "@/domain/models";
 
 export namespace DataProducts {
   export type Params = {
-    url: string;
     filter?: string;
   };
 

@@ -5,8 +5,8 @@ export class HttpConsultProducts implements ConsultProduct {
   constructor(
     private readonly consultProductsService: ConsultProductsService
   ) {}
-  async consult(url: string): ConsultProduct.Result {
-    const products = await this.consultProductsService.consult(url);
+  async consult(): ConsultProduct.Result {
+    const products = await this.consultProductsService.consult();
 
     return products;
   }

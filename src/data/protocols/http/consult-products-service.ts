@@ -3,5 +3,5 @@ export namespace ConsultProductsService {
 }
 
 export interface ConsultProductsService {
-  consult(url: string): ConsultProductsService.Result;
+  consult(): ConsultProductsService.Result;
 }

@@ -1,9 +1,12 @@
 import { DataProducts } from "@/domain/usecases";
 import puppeteer from "puppeteer";
+import { CONSTANTS } from "../utils/constants";
+
+const URL = CONSTANTS.URL;
 
 export class HttpDataProducts implements DataProducts {
   async getDataProducts(params: any): DataProducts.Result {
-    const { url, filter } = params;
+    const { filter } = params;
 
     const browser = await puppeteer.launch({
       executablePath: "/usr/bin/google-chrome",
@@ -13,7 +16,7 @@ export class HttpDataProducts implements DataProducts {
     // const browser = await puppeteer.launch();
 
     const page = await browser.newPage();
-    await page.goto(url);
+    await page.goto(URL);
 
     const infos = await page.evaluate(() => {
       const infoProducts = document.querySelectorAll(
