@@ -4,16 +4,15 @@ import {
   UpdateAccessTokenRepository,
 } from "@/data/protocols/db";
 import fs from "fs";
-import { resolve } from "path";
 
 const readFile = () => {
-  const content = fs.readFileSync("./database.json", "utf-8");
+  const content = fs.readFileSync(`${__dirname}/database.json`, "utf-8");
   return JSON.parse(content);
 };
 
 const writeFile = (content: any) => {
   const updateFile = JSON.stringify(content);
-  fs.writeFileSync("./database.json", updateFile, "utf-8");
+  fs.writeFileSync(`${__dirname}/database.json`, updateFile, "utf-8");
 };
 
 export class AccountRepository

@@ -24,12 +24,12 @@ RUN apt update
 RUN apt install google-chrome-stable -y --no-install-recommends 
 RUN rm -rf /var/lib/apt/lists/*
 
-RUN chown node:node /home/node/app
+RUN chown $user:$user /home/node/app
 
 COPY package.json .
 RUN yarn install --production=true
 
-USER node
+USER $user
 
 COPY --from=builder /home/node/app/dist ./dist
 RUN mkdir -p ./log/error
